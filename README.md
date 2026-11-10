@@ -2,7 +2,7 @@
 
 A seven-step visual guide for connecting a client to the TAISK Practice Portal through Xero.
 
-Live page: https://guifry.github.io/practice-onboarding-guide/
+Live page: https://onboarding-guide.taisk.com/
 
 ## Editing
 
