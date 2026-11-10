@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connecting your first client · TAISK Practice Portal</title>
+<meta name="description" content="A seven-step visual guide for connecting a client to the TAISK Practice Portal through Xero.">
+<meta name="theme-color" content="#F6F8F9">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Connecting your first client · TAISK Practice Portal">
+<meta property="og:description" content="A seven-step visual guide for connecting a client to the TAISK Practice Portal through Xero.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a class="skip" href="#stage">Skip to the guide</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="#start" aria-label="TAISK, back to the start">
+      <img src="assets/taisk-wordmark.png" alt="TAISK" width="118" height="42">
+    </a>
+    <span class="topbar__rule" aria-hidden="true"></span>
+    <div class="topbar__titles">
+      <p class="topbar__kicker">Practice Portal</p>
+      <p class="topbar__doc">Connecting your first client</p>
+    </div>
+    <div class="topbar__right">
+      <p class="counter" id="counter">Before you start</p>
+      <button class="ghostbtn" type="button" data-overview>
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        <span class="ghostbtn__label">All steps</span>
+      </button>
+    </div>
+  </div>
+  <div class="rail" role="progressbar" aria-label="Guide progress" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" id="rail">
+    <span class="rail__fill" id="railFill"></span>
+  </div>
+</header>
+
+<main id="stage">
+
+  <!-- COVER -->
+  <section class="slide slide--cover" id="start" data-key="start" data-title="Before you start">
+    <div class="slide__inner cover">
+      <div class="cover__text">
+        <p class="eyebrow">Practice Portal · Setup guide</p>
+        <h1 class="display">Connecting your first client</h1>
+        <p class="lead">Seven short steps. One client. About ten minutes, and you only do the sign-up once.</p>
+        <div class="cover__meta">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 10 minutes</span>
+          <span class="chip">Xero</span>
+          <span class="chip">No accounting knowledge needed</span>
+        </div>
+        <div class="cover__actions">
+          <button class="btn btn--primary btn--lg" type="button" data-next>
+            Start step 1
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="hint hint--inline">
+          <kbd>&larr;</kbd> <kbd>&rarr;</kbd> move between steps · <kbd>O</kbd> see every step
+        </p>
+      </div>
+
+      <div class="cover__thumbs" aria-hidden="true">
+        <figure class="thumb"><img src="assets/step-1-create-account.png" alt=""><figcaption><b>1</b> Create account</figcaption></figure>
+        <figure class="thumb"><img src="assets/step-2-verify-code.png" alt=""><figcaption><b>2</b> Email code</figcaption></figure>
+        <figure class="thumb"><img src="assets/step-3-choose-software.png" alt=""><figcaption><b>3</b> Pick software</figcaption></figure>
+        <figure class="thumb"><img src="assets/step-4-continue-to-xero.png" alt=""><figcaption><b>4</b> Continue to Xero</figcaption></figure>
+        <figure class="thumb"><img src="assets/step-5-select-organisation.png" alt=""><figcaption><b>5</b> Pick the client</figcaption></figure>
+        <figure class="thumb"><img src="assets/step-6-approve-access.png" alt=""><figcaption><b>6</b> Approve access</figcaption></figure>
+        <figure class="thumb"><img src="assets/step-7-client-added.png" alt=""><figcaption><b>7</b> Client added</figcaption></figure>
+        <figure class="thumb thumb--end"><figcaption>That's it</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 1 -->
+  <section class="slide" id="step-1" data-key="step-1" data-title="Create your account" data-step="1">
+    <div class="slide__inner">
+      <div class="copy">
+        <p class="eyebrow">Step 1 of 7</p>
+        <h2>Create your account</h2>
+        <p class="lead">Open the Practice Portal and sign yourself up.</p>
+        <ol class="tasks">
+          <li>Go to <a href="https://practice.taisk.com/login" target="_blank" rel="noopener">practice.taisk.com/login</a>.</li>
+          <li>Type your first name and last name.</li>
+          <li>Enter your work email address &mdash; this is where your code will be sent.</li>
+          <li>Choose a password, then click <span class="ui">Continue</span>.</li>
+        </ol>
+        <p class="tip"><span class="tip__label">Tip</span> Use your work email, not a personal one. Every colleague signs up with their own account.</p>
+      </div>
+      <figure class="shot">
+        <button class="shot__btn" type="button" data-zoom="assets/step-1-create-account.png" aria-label="Enlarge the screenshot for step 1">
+          <img src="assets/step-1-create-account.png" alt="The TAISK account creation screen with first name, last name, email and password fields.">
+        </button>
+        <figcaption><span>Create account screen</span><span class="shot__hint">Click to enlarge</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="slide" id="step-2" data-key="step-2" data-title="Enter the code from your email" data-step="2">
+    <div class="slide__inner">
+      <div class="copy">
+        <p class="eyebrow">Step 2 of 7</p>
+        <h2>Enter the code from your email</h2>
+        <p class="lead">A short six-digit code arrives by email to prove the address is yours.</p>
+        <ol class="tasks">
+          <li>Open your inbox for the address you just used.</li>
+          <li>Find the newest email from TAISK. The subject line mentions your code.</li>
+          <li>Type the six digits into the boxes, then click <span class="ui">Continue</span>.</li>
+        </ol>
+        <p class="tip"><span class="tip__label">Nothing yet?</span> Give it a minute, then click <span class="ui">Resend</span> once the countdown finishes. If it still doesn't arrive, look in your spam or junk folder.</p>
+      </div>
+      <figure class="shot">
+        <button class="shot__btn" type="button" data-zoom="assets/step-2-verify-code.png" aria-label="Enlarge the screenshot for step 2">
+          <img src="assets/step-2-verify-code.png" alt="The six-box code entry screen with a Continue button.">
+        </button>
+        <figcaption><span>Code entry</span><span class="shot__hint">Click to enlarge</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="slide" id="step-3" data-key="step-3" data-title="Choose your accounting software" data-step="3">
+    <div class="slide__inner">
+      <div class="copy">
+        <p class="eyebrow">Step 3 of 7</p>
+        <h2>Choose your accounting software</h2>
+        <p class="lead">The Practice Dashboard is your home from now on. Under <em>Connect your practice</em>, pick the software your client keeps their books in.</p>
+        <ol class="tasks">
+          <li>Find the <span class="ui">Connect your practice</span> panel.</li>
+          <li>Click <span class="ui">Connect</span> on the <strong>Xero</strong> card.</li>
+          <li>FreeAgent works the same way. Sage and QuickBooks are coming soon.</li>
+        </ol>
+        <p class="tip"><span class="tip__label">Good to know</span> Each client is connected on its own. You'll come back to this panel every time you add another one.</p>
+      </div>
+      <figure class="shot">
+        <button class="shot__btn" type="button" data-zoom="assets/step-3-choose-software.png" aria-label="Enlarge the screenshot for step 3">
+          <img src="assets/step-3-choose-software.png" alt="The practice dashboard showing FreeAgent, Xero, Sage and QuickBooks connection cards.">
+        </button>
+        <figcaption><span>Connect your practice panel</span><span class="shot__hint">Click to enlarge</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="slide" id="step-4" data-key="step-4" data-title="Continue to Xero" data-step="4">
+    <div class="slide__inner">
+      <div class="copy">
+        <p class="eyebrow">Step 4 of 7</p>
+        <h2>Continue to Xero</h2>
+        <p class="lead">A short message explains how the connection works before you leave TAISK.</p>
+        <ol class="tasks">
+          <li>Read the three points &mdash; one client at a time, already-connected organisations are hidden, and you sign in with your own Xero login.</li>
+          <li>Tick <span class="ui">Don't show this again</span> so it skips next time.</li>
+          <li>Click <span class="ui">Continue to Xero</span>.</li>
+        </ol>
+        <p class="tip"><span class="tip__label">Careful</span> You're about to leave TAISK and land on Xero. If the Xero sign-in page appears, use your own Xero details &mdash; not the client's.</p>
+      </div>
+      <figure class="shot">
+        <button class="shot__btn" type="button" data-zoom="assets/step-4-continue-to-xero.png" aria-label="Enlarge the screenshot for step 4">
+          <img src="assets/step-4-continue-to-xero.png" alt="The Add a Xero client dialog with three bullet points and a Continue to Xero button.">
+        </button>
+        <figcaption><span>Add a Xero client dialog</span><span class="shot__hint">Click to enlarge</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- STEP 5 -->
+  <section class="slide" id="step-5" data-key="step-5" data-title="Pick the client in Xero" data-step="5">
+    <div class="slide__inner">
+      <div class="copy">
+        <p class="eyebrow">Step 5 of 7</p>
+        <h2>Pick the client in Xero</h2>
+        <p class="lead">This page is Xero's, not ours. It asks which organisation TAISK may read.</p>
+        <ol class="tasks">
+          <li>In the <span class="ui">Select another organisation</span> dropdown, choose the client you want to add.</li>
+          <li>Give it a second to load. The list of permissions will refresh.</li>
+          <li>Check the name matches the client, then move to step 6.</li>
+        </ol>
+        <p class="tip"><span class="tip__label">Why is a client missing?</span> Organisations already connected to TAISK don't appear, and neither do organisations your Xero login can't reach.</p>
+      </div>
+      <figure class="shot">
+        <button class="shot__btn" type="button" data-zoom="assets/step-5-select-organisation.png" aria-label="Enlarge the screenshot for step 5">
+          <img src="assets/step-5-select-organisation.png" alt="Xero's authorisation page with the Select another organisation dropdown.">
+        </button>
+        <figcaption><span>Xero authorisation screen</span><span class="shot__hint">Click to enlarge</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- STEP 6 -->
+  <section class="slide" id="step-6" data-key="step-6" data-title="Approve access" data-step="6">
+    <div class="slide__inner">
+      <div class="copy">
+        <p class="eyebrow">Step 6 of 7</p>
+        <h2>Approve access</h2>
+        <p class="lead">Scroll to the bottom of the Xero page and confirm the connection.</p>
+        <ol class="tasks">
+          <li>Scroll down past the list of reports Xero will share.</li>
+          <li>Click the blue <span class="ui">Continue with 1 organisation</span> button.</li>
+          <li>You'll be brought straight back to your TAISK Practice Dashboard.</li>
+        </ol>
+        <p class="tip"><span class="tip__label">Reassurance</span> TAISK can read your client's books. It can't change anything in Xero, and access can be removed at any time from Xero's <em>Connected apps</em> page.</p>
+      </div>
+      <figure class="shot">
+        <button class="shot__btn" type="button" data-zoom="assets/step-6-approve-access.png" aria-label="Enlarge the screenshot for step 6">
+          <img src="assets/step-6-approve-access.png" alt="The bottom of Xero's authorisation page with the Continue with 1 organisation button.">
+        </button>
+        <figcaption><span>Continue with 1 organisation</span><span class="shot__hint">Click to enlarge</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- STEP 7 -->
+  <section class="slide" id="step-7" data-key="step-7" data-title="Confirm the client has been added" data-step="7">
+    <div class="slide__inner">
+      <div class="copy">
+        <p class="eyebrow">Step 7 of 7</p>
+        <h2>Confirm the client has been added</h2>
+        <p class="lead">Back on the dashboard, the client appears with a <span class="ui">Being prepared</span> label.</p>
+        <ol class="tasks">
+          <li>Check the client is listed under <em>Your clients</em>.</li>
+          <li>Leave it alone &mdash; TAISK is building the first forecast in the background.</li>
+          <li>You'll be emailed when it's ready to review.</li>
+        </ol>
+        <p class="tip"><span class="tip__label">Next client</span> Click <span class="ui">Add another client</span> and repeat from step 4. Everything else stays the same.</p>
+      </div>
+      <figure class="shot">
+        <button class="shot__btn" type="button" data-zoom="assets/step-7-client-added.png" aria-label="Enlarge the screenshot for step 7">
+          <img src="assets/step-7-client-added.png" alt="The practice dashboard listing one client marked Being prepared.">
+        </button>
+        <figcaption><span>Client added</span><span class="shot__hint">Click to enlarge</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- DONE -->
+  <section class="slide slide--done" id="done" data-key="done" data-title="That's the whole flow">
+    <div class="slide__inner done">
+      <p class="eyebrow">All done</p>
+      <h2 class="display display--sm">That's the whole flow.</h2>
+      <p class="lead">You signed up, connected a client through Xero, and the first forecast is being built. Adding the next client only takes steps 4 to 7.</p>
+      <ul class="recap" role="list">
+        <li><a href="#step-1">Create your account</a></li>
+        <li><a href="#step-2">Enter the email code</a></li>
+        <li><a href="#step-3">Choose your software</a></li>
+        <li><a href="#step-4">Continue to Xero</a></li>
+        <li><a href="#step-5">Pick the client</a></li>
+        <li><a href="#step-6">Approve access</a></li>
+        <li><a href="#step-7">Confirm the client</a></li>
+      </ul>
+      <div class="done__panel">
+        <h3>If something looks different</h3>
+        <p>Refresh the page and start again from step 3. A client can be added again at any time, and nothing is lost by closing the guide halfway through.</p>
+      </div>
+      <button class="btn btn--ghost btn--lg" type="button" data-restart>
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v5h5"/></svg>
+        Go through it again
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="controls">
+  <div class="controls__inner">
+    <button class="btn btn--nav" type="button" id="prev" aria-label="Previous step">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M19 12H6M11 6l-6 6 6 6"/></svg>
+      <span class="btn__label"><small>Previous</small><span id="prevName">Start</span></span>
+    </button>
+
+    <nav class="dots" id="dots" aria-label="Jump to a step"></nav>
+
+    <button class="btn btn--nav btn--next" type="button" id="next" aria-label="Next step">
+      <span class="btn__label"><small>Next</small><span id="nextName">Step 1</span></span>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+  <p class="controls__hint"><kbd>&larr;</kbd> <kbd>&rarr;</kbd> to move &middot; <kbd>O</kbd> for all steps &middot; <kbd>Esc</kbd> to close</p>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox__close" type="button" id="lightboxClose" aria-label="Close the enlarged screenshot">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    <span>Close</span>
+  </button>
+  <img id="lightboxImg" alt="">
+</div>
+
+<div class="overview" id="overview" hidden role="dialog" aria-modal="true" aria-labelledby="overviewTitle">
+  <div class="overview__panel">
+    <div class="overview__head">
+      <h2 id="overviewTitle">All seven steps</h2>
+      <button class="btn btn--ghost" type="button" id="overviewClose">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        Close
+      </button>
+    </div>
+    <ol class="overview__grid" id="overviewGrid" role="list"></ol>
+  </div>
+</div>
+
+<p class="sr-only" aria-live="polite" id="live"></p>
+
+<script src="app.js"></script>
+</body>
+</html>
