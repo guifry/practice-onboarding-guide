@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Connecting your first client · TAISK Practice Portal</title>
-<meta name="description" content="A seven-step visual guide for connecting a client to the TAISK Practice Portal through Xero.">
+<title>Connecting your clients · TAISK Practice Portal</title>
+<meta name="description" content="A visual guide to connecting clients to the TAISK Practice Portal, whether they are on Xero or FreeAgent.">
 <meta name="theme-color" content="#F6F8F9">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="Connecting your first client · TAISK Practice Portal">
-<meta property="og:description" content="A seven-step visual guide for connecting a client to the TAISK Practice Portal through Xero.">
+<meta property="og:title" content="Connecting your clients · TAISK Practice Portal">
+<meta property="og:description" content="A visual guide to connecting clients to the TAISK Practice Portal, whether they are on Xero or FreeAgent.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://onboarding-guide.taisk.com/">
 <meta property="og:url" content="https://onboarding-guide.taisk.com/">
@@ -30,9 +30,13 @@
     <span class="topbar__rule" aria-hidden="true"></span>
     <div class="topbar__titles">
       <p class="topbar__kicker">Practice Portal</p>
-      <p class="topbar__doc">Connecting your first client</p>
+      <p class="topbar__doc">Connecting your clients</p>
     </div>
     <div class="topbar__right">
+      <div class="track" role="group" aria-label="Choose your accounting software">
+        <button class="track__btn" type="button" data-track-btn="xero">Xero</button>
+        <button class="track__btn" type="button" data-track-btn="fa">FreeAgent</button>
+      </div>
       <p class="counter" id="counter">Before you start</p>
       <button class="ghostbtn" type="button" data-overview>
         <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
@@ -48,16 +52,16 @@
 <main id="stage">
 
   <!-- COVER -->
-  <section class="slide slide--cover" id="start" data-key="start" data-title="Before you start">
+  <section class="slide slide--cover" id="start" data-key="start" data-track="shared" data-kind="cover" data-title="Before you start">
     <div class="slide__inner cover">
       <div class="cover__text">
         <p class="eyebrow">Practice Portal · Setup guide</p>
-        <h1 class="display">Connecting your first client</h1>
-        <p class="lead">Seven short steps. One client. About five minutes, and you only do the sign-up once.</p>
+        <h1 class="display">Connecting your clients</h1>
+        <p class="lead">Two routes, one sign-up. Xero clients are added one at a time. FreeAgent brings your whole practice across from a single login.</p>
         <div class="cover__meta">
           <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 5 minutes</span>
           <span class="chip">Xero</span>
-          <span class="chip">No accounting knowledge needed</span>
+          <span class="chip">FreeAgent</span>
         </div>
         <div class="cover__actions">
           <button class="btn btn--primary btn--lg" type="button" data-next>
@@ -70,24 +74,15 @@
         </p>
       </div>
 
-      <div class="cover__thumbs" aria-hidden="true">
-        <figure class="thumb"><img src="assets/step-1-create-account.png" alt=""><figcaption><b>1</b> Create account</figcaption></figure>
-        <figure class="thumb"><img src="assets/step-2-verify-code.png" alt=""><figcaption><b>2</b> Email code</figcaption></figure>
-        <figure class="thumb"><img src="assets/step-3-choose-software.png" alt=""><figcaption><b>3</b> Pick software</figcaption></figure>
-        <figure class="thumb"><img src="assets/step-4-continue-to-xero.png" alt=""><figcaption><b>4</b> Continue to Xero</figcaption></figure>
-        <figure class="thumb"><img src="assets/step-5-select-organisation.png" alt=""><figcaption><b>5</b> Pick the client</figcaption></figure>
-        <figure class="thumb"><img src="assets/step-6-approve-access.png" alt=""><figcaption><b>6</b> Approve access</figcaption></figure>
-        <figure class="thumb"><img src="assets/step-7-client-added.png" alt=""><figcaption><b>7</b> Client added</figcaption></figure>
-        <figure class="thumb thumb--end"><figcaption>That's it</figcaption></figure>
-      </div>
+      <div class="cover__thumbs" id="coverThumbs" aria-hidden="true"></div>
     </div>
   </section>
 
   <!-- STEP 1 -->
-  <section class="slide" id="step-1" data-key="step-1" data-title="Create your account" data-step="1">
+  <section class="slide" id="step-1" data-key="step-1" data-short="Create account" data-track="shared" data-kind="step" data-title="Create your account">
     <div class="slide__inner">
       <div class="copy">
-        <p class="eyebrow">Step 1 of 7</p>
+        <p class="eyebrow" data-eyebrow></p>
         <h2>Create your account</h2>
         <p class="lead">Open the Practice Portal and sign yourself up.</p>
         <ol class="tasks">
@@ -108,10 +103,10 @@
   </section>
 
   <!-- STEP 2 -->
-  <section class="slide" id="step-2" data-key="step-2" data-title="Enter the code from your email" data-step="2">
+  <section class="slide" id="step-2" data-key="step-2" data-short="Email code" data-track="shared" data-kind="step" data-title="Enter the code from your email">
     <div class="slide__inner">
       <div class="copy">
-        <p class="eyebrow">Step 2 of 7</p>
+        <p class="eyebrow" data-eyebrow></p>
         <h2>Enter the code from your email</h2>
         <p class="lead">A short six-digit code arrives by email to prove the address is yours.</p>
         <ol class="tasks">
@@ -131,33 +126,45 @@
   </section>
 
   <!-- STEP 3 -->
-  <section class="slide" id="step-3" data-key="step-3" data-title="Choose your accounting software" data-step="3">
-    <div class="slide__inner">
+  <section class="slide" id="step-3" data-key="step-3" data-short="Pick software" data-track="shared" data-kind="step" data-title="Choose your accounting software">
+    <div class="slide__inner slide__inner--wide">
       <div class="copy">
-        <p class="eyebrow">Step 3 of 7</p>
+        <p class="eyebrow" data-eyebrow></p>
         <h2>Choose your accounting software</h2>
-        <p class="lead">The Practice Dashboard is your home from now on. Under <em>Connect your practice</em>, pick the software your client keeps their books in.</p>
-        <ol class="tasks">
-          <li>Find the <span class="ui">Connect your practice</span> panel.</li>
-          <li>Click <span class="ui">Connect</span> on the <strong>Xero</strong> card.</li>
-          <li>FreeAgent works the same way. Sage and QuickBooks are coming soon.</li>
-        </ol>
-        <p class="tip"><span class="tip__label">Good to know</span> Each client is connected on its own. You'll come back to this panel every time you add another one.</p>
+        <p class="lead">On the Practice Dashboard, under <em>Connect your practice</em>, pick the software your clients keep their books in. The two behave differently.</p>
+        <p class="tip"><span class="tip__label">Both?</span> You can do one now and the other later. Each connection stays separate.</p>
       </div>
-      <figure class="shot">
-        <button class="shot__btn" type="button" data-zoom="assets/step-3-choose-software.png" aria-label="Enlarge the screenshot for step 3">
-          <img src="assets/step-3-choose-software.png" alt="The practice dashboard showing FreeAgent, Xero, Sage and QuickBooks connection cards.">
+      <div class="choices">
+        <button class="choice" type="button" data-choose="xero">
+          <span class="choice__logo"><img src="assets/logo-xero.svg" alt=""></span>
+          <span class="choice__text">
+            <span class="choice__name">Xero</span>
+            <span class="choice__desc">One client at a time. You pick each organisation on Xero's screen.</span>
+          </span>
+          <span class="choice__go">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </span>
         </button>
-        <figcaption><span>Connect your practice panel</span><span class="shot__hint">Click to enlarge</span></figcaption>
-      </figure>
+        <button class="choice" type="button" data-choose="fa">
+          <span class="choice__logo"><img src="assets/logo-freeagent.png" alt=""></span>
+          <span class="choice__text">
+            <span class="choice__name">FreeAgent</span>
+            <span class="choice__desc">Your whole practice in one go. One login, and every business is found for you.</span>
+          </span>
+          <span class="choice__go">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </span>
+        </button>
+        <p class="choices__note">Sage and QuickBooks are coming soon.</p>
+      </div>
     </div>
   </section>
 
   <!-- STEP 4 -->
-  <section class="slide" id="step-4" data-key="step-4" data-title="Continue to Xero" data-step="4">
+  <section class="slide" id="step-4" data-key="step-4" data-short="Continue to Xero" data-track="xero" data-kind="step" data-title="Continue to Xero">
     <div class="slide__inner">
       <div class="copy">
-        <p class="eyebrow">Step 4 of 7</p>
+        <p class="eyebrow" data-eyebrow></p>
         <h2>Continue to Xero</h2>
         <p class="lead">A short message explains how the connection works before you leave TAISK.</p>
         <ol class="tasks">
@@ -177,10 +184,10 @@
   </section>
 
   <!-- STEP 5 -->
-  <section class="slide" id="step-5" data-key="step-5" data-title="Pick the client in Xero" data-step="5">
+  <section class="slide" id="step-5" data-key="step-5" data-short="Pick the client" data-track="xero" data-kind="step" data-title="Pick the client in Xero">
     <div class="slide__inner">
       <div class="copy">
-        <p class="eyebrow">Step 5 of 7</p>
+        <p class="eyebrow" data-eyebrow></p>
         <h2>Pick the client in Xero</h2>
         <p class="lead">This page is Xero's, not ours. It asks which organisation TAISK may read.</p>
         <ol class="tasks">
@@ -200,10 +207,10 @@
   </section>
 
   <!-- STEP 6 -->
-  <section class="slide" id="step-6" data-key="step-6" data-title="Approve access" data-step="6">
+  <section class="slide" id="step-6" data-key="step-6" data-short="Approve access" data-track="xero" data-kind="step" data-title="Approve access">
     <div class="slide__inner">
       <div class="copy">
-        <p class="eyebrow">Step 6 of 7</p>
+        <p class="eyebrow" data-eyebrow></p>
         <h2>Approve access</h2>
         <p class="lead">Scroll to the bottom of the Xero page and confirm the connection.</p>
         <ol class="tasks">
@@ -223,10 +230,10 @@
   </section>
 
   <!-- STEP 7 -->
-  <section class="slide" id="step-7" data-key="step-7" data-title="Confirm the client has been added" data-step="7">
+  <section class="slide" id="step-7" data-key="step-7" data-short="Client added" data-track="xero" data-kind="step" data-title="Confirm the client has been added">
     <div class="slide__inner">
       <div class="copy">
-        <p class="eyebrow">Step 7 of 7</p>
+        <p class="eyebrow" data-eyebrow></p>
         <h2>Confirm the client has been added</h2>
         <p class="lead">Back on the dashboard, the client appears with a <span class="ui">Being prepared</span> label.</p>
         <ol class="tasks">
@@ -245,29 +252,98 @@
     </div>
   </section>
 
+  <!-- FREEGENT -->
+  <section class="slide" id="fa-1" data-key="fa-1" data-short="Connect FreeAgent" data-track="fa" data-kind="step" data-title="Click Connect on the FreeAgent card">
+    <div class="slide__inner">
+      <div class="copy">
+        <p class="eyebrow" data-eyebrow data-suffix="FreeAgent"></p>
+        <h2>Click Connect on the FreeAgent card</h2>
+        <p class="lead">FreeAgent is the first card under <em>Connect your practice</em>.</p>
+        <ol class="tasks">
+          <li>On the Practice Dashboard, find the <span class="ui">Connect your practice</span> panel.</li>
+          <li>Click <span class="ui">Connect</span> on the <strong>FreeAgent</strong> card.</li>
+          <li>TAISK sends you to FreeAgent's own sign-in page.</li>
+        </ol>
+        <p class="tip"><span class="tip__label">One connection</span> You only do this once. Every business in the practice comes across with it &mdash; there's nothing to repeat per client.</p>
+      </div>
+      <figure class="shot">
+        <button class="shot__btn" type="button" data-zoom="assets/step-3-choose-software.png" aria-label="Enlarge the screenshot showing the FreeAgent card">
+          <img src="assets/step-3-choose-software.png" alt="The practice dashboard showing the FreeAgent card first in the Connect your practice panel.">
+        </button>
+        <figcaption><span>Connect your practice panel</span><span class="shot__hint">Click to enlarge</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="slide" id="fa-2" data-key="fa-2" data-short="FreeAgent login" data-track="fa" data-kind="step" data-title="Sign in with your practice login">
+    <div class="slide__inner">
+      <div class="copy">
+        <p class="eyebrow" data-eyebrow data-suffix="FreeAgent"></p>
+        <h2>Sign in with your practice login</h2>
+        <p class="lead">FreeAgent keeps its own sign-in page. Use the login you already use for the practice.</p>
+        <ol class="tasks">
+          <li>Enter the email address and password you use to open FreeAgent.</li>
+          <li>Click <span class="ui">Log in</span>. Google sign-in works too if that's how you normally get in.</li>
+          <li>Approve access if FreeAgent asks.</li>
+        </ol>
+        <p class="tip"><span class="tip__label">Not a client's login</span> Your practice login is what lets TAISK see every business in the practice. A client's login would only bring in theirs.</p>
+      </div>
+      <figure class="shot">
+        <button class="shot__btn" type="button" data-zoom="assets/fa-sign-in.png" aria-label="Enlarge the FreeAgent sign-in screenshot">
+          <img src="assets/fa-sign-in.png" alt="The FreeAgent login screen with email, password, Log in and Sign in with Google.">
+        </button>
+        <figcaption><span>FreeAgent sign-in</span><span class="shot__hint">Click to enlarge</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="slide" id="fa-3" data-key="fa-3" data-short="All businesses" data-track="fa" data-kind="step" data-title="Every business arrives at once">
+    <div class="slide__inner">
+      <div class="copy">
+        <p class="eyebrow" data-eyebrow data-suffix="FreeAgent"></p>
+        <h2>Every business arrives at once</h2>
+        <p class="lead">Back on the Practice Dashboard, TAISK has already read the practice and created a client for each business in it.</p>
+        <ol class="tasks">
+          <li>Check the list under <em>Your clients</em> &mdash; nothing to add or select by hand.</li>
+          <li>Each client shows <span class="ui">Being prepared</span> while its first forecast is built.</li>
+          <li>You'll be emailed as each one becomes ready to review.</li>
+        </ol>
+        <p class="tip"><span class="tip__label">New business later?</span> A business added to FreeAgent afterwards doesn't appear on its own yet. Click <span class="ui">Add another client</span> and reconnect FreeAgent to pick it up.</p>
+      </div>
+      <div class="arrival">
+        <p class="arrival__label">One login</p>
+        <p class="arrival__figure">All of them</p>
+        <p class="arrival__body">TAISK scans the practice and lists every business as a client. No picking, no repeating, no per-client steps.</p>
+        <ul class="arrival__list" role="list">
+          <li>Practice found</li>
+          <li>Businesses listed</li>
+          <li>Forecasts building</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- DONE -->
-  <section class="slide slide--done" id="done" data-key="done" data-title="That's the whole flow">
+  <section class="slide slide--done" id="done" data-key="done" data-track="shared" data-kind="end" data-title="That's the whole flow">
     <div class="slide__inner done">
       <p class="eyebrow">All done</p>
       <h2 class="display display--sm">That's the whole flow.</h2>
-      <p class="lead">You signed up, connected a client through Xero, and the first forecast is being built. Adding the next client only takes steps 4 to 7.</p>
-      <ul class="recap" role="list">
-        <li><a href="#step-1">Create your account</a></li>
-        <li><a href="#step-2">Enter the email code</a></li>
-        <li><a href="#step-3">Choose your software</a></li>
-        <li><a href="#step-4">Continue to Xero</a></li>
-        <li><a href="#step-5">Pick the client</a></li>
-        <li><a href="#step-6">Approve access</a></li>
-        <li><a href="#step-7">Confirm the client</a></li>
-      </ul>
+      <p class="lead" id="doneLead">You signed up, connected a client through Xero, and the first forecast is being built. Adding the next client only takes steps 4 to 7.</p>
+      <ul class="recap" id="recap" role="list"></ul>
       <div class="done__panel">
         <h3>If something looks different</h3>
-        <p>Refresh the page and start again from step 3. A client can be added again at any time, and nothing is lost by closing the guide halfway through.</p>
+        <p id="doneNote">Refresh the page and start again from step 3. A connection can be made again at any time, and nothing is lost by closing the guide halfway through.</p>
       </div>
-      <button class="btn btn--ghost btn--lg" type="button" data-restart>
-        <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v5h5"/></svg>
-        Go through it again
-      </button>
+      <div class="done__actions">
+        <button class="btn btn--ghost btn--lg" type="button" data-restart>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v5h5"/></svg>
+          Go through it again
+        </button>
+        <button class="btn btn--ghost btn--lg" type="button" data-switch-other>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>
+          <span id="otherTrackLabel">Show me the FreeAgent steps</span>
+        </button>
+      </div>
     </div>
   </section>
 

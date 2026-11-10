@@ -1,5 +1,4 @@
-const slides = Array.from(document.querySelectorAll('.slide'));
-const totalSteps = 7;
+const allSlides = Array.from(document.querySelectorAll('.slide'));
 
 const counter = document.getElementById('counter');
 const rail = document.getElementById('rail');
@@ -16,115 +15,241 @@ const lightboxClose = document.getElementById('lightboxClose');
 const overview = document.getElementById('overview');
 const overviewGrid = document.getElementById('overviewGrid');
 const overviewClose = document.getElementById('overviewClose');
+const coverThumbs = document.getElementById('coverThumbs');
+const recap = document.getElementById('recap');
+const doneLead = document.getElementById('doneLead');
+const otherTrackLabel = document.getElementById('otherTrackLabel');
+const trackButtons = Array.from(document.querySelectorAll('[data-track-btn]'));
 
-const steps = slides.filter((slide) => slide.dataset.step);
+const TRACK_KEY = 'taisk-guide-track';
+const TRACKS = {
+  xero: {
+    label: 'Xero',
+    done: 'You signed up, connected a client through Xero, and the first forecast is being built. Adding the next client only takes the last four steps.',
+  },
+  fa: {
+    label: 'FreeAgent',
+    done: 'You signed up and connected your practice once. Every FreeAgent business is now a client in TAISK, and the forecasts are building in the background.',
+  },
+};
+
+let track = readTrack();
 let index = 0;
 
-const indexOfKey = (key) => slides.findIndex((slide) => slide.dataset.key === key);
-
-const keyForIndex = (i) => slides[i].dataset.key;
-
-function labelFor(i) {
-  const slide = slides[i];
-  if (slide.dataset.step) return `Step ${slide.dataset.step} of ${totalSteps}`;
-  return i === 0 ? 'Before you start' : 'All done';
+function readTrack() {
+  try {
+    const saved = localStorage.getItem(TRACK_KEY);
+    if (saved && TRACKS[saved]) return saved;
+  } catch (error) {
+    /* storage unavailable */
+  }
+  return 'xero';
 }
 
-function nameFor(i) {
-  if (i < 0 || i >= slides.length) return '';
-  const slide = slides[i];
-  return slide.dataset.step ? `Step ${slide.dataset.step}` : slide.dataset.title;
+function saveTrack() {
+  try {
+    localStorage.setItem(TRACK_KEY, track);
+  } catch (error) {
+    /* storage unavailable */
+  }
+}
+
+const sequence = () => allSlides.filter((slide) => slide.dataset.track === 'shared' || slide.dataset.track === track);
+const stepsIn = (list) => list.filter((slide) => slide.dataset.kind === 'step');
+const totalSteps = () => stepsIn(sequence()).length;
+const stepNumber = (slide) => stepsIn(sequence()).indexOf(slide) + 1;
+const currentSlide = () => sequence()[index];
+const indexOfKey = (key) => sequence().findIndex((slide) => slide.dataset.key === key);
+
+function labelFor(slide) {
+  if (slide.dataset.kind === 'cover') return 'Before you start';
+  if (slide.dataset.kind === 'end') return 'All done';
+  return `Step ${stepNumber(slide)} of ${totalSteps()}`;
+}
+
+function nameFor(slide) {
+  if (!slide) return '';
+  if (slide.dataset.kind === 'step') return `Step ${stepNumber(slide)}`;
+  if (slide.dataset.kind === 'end') return 'Finish';
+  return slide.dataset.title;
 }
 
 function buildDots() {
-  steps.forEach((slide, i) => {
-    const step = Number(slide.dataset.step);
+  dots.innerHTML = '';
+  stepsIn(sequence()).forEach((slide) => {
     const dot = document.createElement('button');
     dot.type = 'button';
     dot.className = 'dot';
-    dot.dataset.index = String(i + 1);
-    dot.setAttribute('aria-label', `Step ${step}: ${slide.dataset.title}`);
-    dot.addEventListener('click', () => go(i + 1));
+    dot.dataset.key = slide.dataset.key;
+    dot.setAttribute('aria-label', `Step ${stepNumber(slide)}: ${slide.dataset.title}`);
+    dot.addEventListener('click', () => go(indexOfKey(slide.dataset.key)));
     dots.append(dot);
   });
 }
 
 function buildOverview() {
-  steps.forEach((slide, i) => {
+  overviewGrid.innerHTML = '';
+  stepsIn(sequence()).forEach((slide) => {
     const item = document.createElement('li');
     const button = document.createElement('button');
     button.type = 'button';
-    button.dataset.index = String(i + 1);
+    button.dataset.key = slide.dataset.key;
     const image = slide.querySelector('.shot img');
     button.innerHTML = `
-      <img src="${image ? image.getAttribute('src') : ''}" alt="" loading="lazy">
+      ${image ? `<img src="${image.getAttribute('src')}" alt="" loading="lazy">` : ''}
       <span class="card__text">
-        <span class="card__num">Step ${slide.dataset.step}</span>
+        <span class="card__num">Step ${stepNumber(slide)} · ${TRACKS[track].label}</span>
         <span class="card__title">${slide.dataset.title}</span>
       </span>`;
     button.addEventListener('click', () => {
       closeOverview();
-      go(i + 1);
+      go(indexOfKey(slide.dataset.key));
     });
     item.append(button);
     overviewGrid.append(item);
   });
 }
 
-function render(options = {}) {
-  const { push = true } = options;
+function buildCoverThumbs() {
+  coverThumbs.innerHTML = '';
+  stepsIn(sequence()).forEach((slide) => {
+    const figure = document.createElement('figure');
+    figure.className = 'thumb';
+    const image = slide.querySelector('.shot img');
+    figure.innerHTML = `
+      ${image ? `<img src="${image.getAttribute('src')}" alt="">` : `<span class="thumb__blank">${slide.dataset.short}</span>`}
+      <figcaption><b>${stepNumber(slide)}</b> ${slide.dataset.short}</figcaption>`;
+    coverThumbs.append(figure);
+  });
+  const end = document.createElement('figure');
+  end.className = 'thumb thumb--end';
+  end.innerHTML = '<figcaption>That\'s it</figcaption>';
+  coverThumbs.append(end);
+}
 
-  slides.forEach((slide, i) => {
-    const active = i === index;
-    slide.classList.toggle('is-active', active);
-    slide.hidden = !active;
+function buildRecapAndCopy() {
+  recap.innerHTML = '';
+  stepsIn(sequence()).forEach((slide) => {
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = `#${slide.dataset.key}`;
+    link.textContent = slide.dataset.short;
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      go(indexOfKey(slide.dataset.key));
+    });
+    item.append(link);
+    recap.append(item);
   });
 
-  const step = Number(slides[index].dataset.step) || 0;
-  counter.textContent = labelFor(index);
+  doneLead.textContent = TRACKS[track].done;
+  otherTrackLabel.textContent = track === 'xero' ? 'Show me the FreeAgent steps' : 'Show me the Xero steps';
+  trackButtons.forEach((button) => {
+    button.setAttribute('aria-pressed', String(button.dataset.trackBtn === track));
+  });
+}
+
+function buildEyebrows() {
+  allSlides.forEach((slide) => {
+    const eyebrow = slide.querySelector('[data-eyebrow]');
+    if (!eyebrow) return;
+    const label = `Step ${stepNumber(slide)} of ${totalSteps()}`;
+    eyebrow.textContent = label;
+    if (eyebrow.dataset.suffix) {
+      const tag = document.createElement('span');
+      tag.className = 'eyebrow__track';
+      tag.textContent = eyebrow.dataset.suffix;
+      eyebrow.append(tag);
+    }
+  });
+}
+
+function render(options = {}) {
+  const { push = true, rebuild = false } = options;
+  const list = sequence();
+  const active = list[index];
+
+  allSlides.forEach((slide) => {
+    const isActive = slide === active;
+    slide.classList.toggle('is-active', isActive);
+    slide.hidden = !isActive;
+  });
+
+  if (rebuild) {
+    buildEyebrows();
+    buildDots();
+    buildOverview();
+    buildCoverThumbs();
+    buildRecapAndCopy();
+  }
+
+  counter.textContent = labelFor(active);
+  const step = active.dataset.kind === 'step' ? stepNumber(active) : active.dataset.kind === 'end' ? totalSteps() : 0;
+  rail.setAttribute('aria-valuemax', String(totalSteps()));
   rail.setAttribute('aria-valuenow', String(step));
-  railFill.style.width = `${(step / totalSteps) * 100}%`;
+  railFill.style.width = `${(step / totalSteps()) * 100}%`;
 
   prevBtn.disabled = index === 0;
-  nextBtn.disabled = index === slides.length - 1;
+  nextBtn.disabled = index === list.length - 1;
 
-  prevName.textContent = index === 0 ? 'Start' : nameFor(index - 1);
-  nextName.textContent = index === slides.length - 1 ? 'Finished' : nameFor(index + 1);
+  prevName.textContent = index === 0 ? 'Start' : nameFor(list[index - 1]);
+  nextName.textContent = index === list.length - 1 ? 'Finished' : nameFor(list[index + 1]);
 
-  prevBtn.setAttribute('aria-label', index === 0 ? 'Previous step' : `Previous: ${nameFor(index - 1)}`);
-  nextBtn.setAttribute('aria-label', index === slides.length - 1 ? 'You are at the end' : `Next: ${nameFor(index + 1)}`);
+  prevBtn.setAttribute('aria-label', index === 0 ? 'Previous step' : `Previous: ${nameFor(list[index - 1])}`);
+  nextBtn.setAttribute('aria-label', index === list.length - 1 ? 'You are at the end' : `Next: ${nameFor(list[index + 1])}`);
 
   dots.querySelectorAll('.dot').forEach((dot) => {
-    const dotStep = Number(dot.dataset.index);
-    const isCurrent = dotStep === index;
-    if (isCurrent) dot.setAttribute('aria-current', 'step');
+    const dotIndex = indexOfKey(dot.dataset.key);
+    if (dotIndex === index) dot.setAttribute('aria-current', 'step');
     else dot.removeAttribute('aria-current');
-    dot.classList.toggle('is-visited', dotStep < index);
+    dot.classList.toggle('is-visited', dotIndex < index);
   });
 
   overviewGrid.querySelectorAll('button').forEach((button) => {
-    if (Number(button.dataset.index) === index) button.setAttribute('aria-current', 'step');
+    if (button.dataset.key === active.dataset.key) button.setAttribute('aria-current', 'step');
     else button.removeAttribute('aria-current');
   });
 
-  live.textContent = `${labelFor(index)}. ${slides[index].dataset.title}`;
+  live.textContent = `${labelFor(active)}. ${active.dataset.title}`;
 
   if (push) {
-    const key = keyForIndex(index);
+    const key = active.dataset.key;
     if (window.location.hash !== `#${key}`) {
       history.pushState({ index }, '', `#${key}`);
     }
   }
 
-  document.title = `${slides[index].dataset.title} · TAISK Practice Portal`;
+  document.title = `${active.dataset.title} · TAISK Practice Portal`;
   window.scrollTo(0, 0);
 }
 
 function go(target) {
-  const next = Math.max(0, Math.min(slides.length - 1, target));
+  const list = sequence();
+  const next = Math.max(0, Math.min(list.length - 1, target));
   if (next === index) return;
   index = next;
   render();
+}
+
+function setTrack(nextTrack) {
+  if (!TRACKS[nextTrack] || nextTrack === track) return;
+  track = nextTrack;
+  saveTrack();
+
+  const previousKey = currentSlide().dataset.key;
+  const list = sequence();
+  const stillThere = list.findIndex((slide) => slide.dataset.key === previousKey);
+  index = stillThere === -1 ? list.findIndex((slide) => slide.dataset.track === track) : stillThere;
+
+  render({ rebuild: true });
+}
+
+function chooseTrack(nextTrack) {
+  track = nextTrack;
+  saveTrack();
+  const list = sequence();
+  index = list.findIndex((slide) => slide.dataset.track === nextTrack);
+  render({ rebuild: true });
 }
 
 /* Lightbox */
@@ -162,9 +287,6 @@ function closeOverview() {
 
 /* Wiring */
 
-buildDots();
-buildOverview();
-
 document.querySelectorAll('[data-zoom]').forEach((button) => {
   button.addEventListener('click', () => openLightbox(button.dataset.zoom));
 });
@@ -181,6 +303,24 @@ document.querySelectorAll('[data-overview]').forEach((button) => {
   button.addEventListener('click', openOverview);
 });
 
+document.querySelectorAll('[data-choose]').forEach((button) => {
+  button.addEventListener('click', () => chooseTrack(button.dataset.choose));
+});
+
+document.querySelectorAll('[data-switch-other]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const other = track === 'xero' ? 'fa' : 'xero';
+    track = other;
+    saveTrack();
+    index = sequence().findIndex((slide) => slide.dataset.track === other);
+    render({ rebuild: true });
+  });
+});
+
+trackButtons.forEach((button) => {
+  button.addEventListener('click', () => setTrack(button.dataset.trackBtn));
+});
+
 prevBtn.addEventListener('click', () => go(index - 1));
 nextBtn.addEventListener('click', () => go(index + 1));
 lightboxClose.addEventListener('click', closeLightbox);
@@ -194,9 +334,10 @@ overview.addEventListener('click', (event) => {
   if (event.target === overview) closeOverview();
 });
 
-document.querySelectorAll('a[href^="#step-"], a[href="#start"], a[href="#done"]').forEach((link) => {
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  const key = link.hash.slice(1);
   link.addEventListener('click', (event) => {
-    const target = indexOfKey(link.hash.slice(1));
+    const target = indexOfKey(key);
     if (target === -1) return;
     event.preventDefault();
     go(target);
@@ -220,9 +361,8 @@ document.addEventListener('keydown', (event) => {
   if (!overview.hidden) {
     if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
       const direction = event.key === 'ArrowRight' ? 1 : -1;
-      const target = Math.max(0, Math.min(slides.length - 1, index + direction));
       closeOverview();
-      go(target);
+      go(index + direction);
       event.preventDefault();
     }
     return;
@@ -247,7 +387,7 @@ document.addEventListener('keydown', (event) => {
       event.preventDefault();
       break;
     case 'End':
-      go(slides.length - 1);
+      go(sequence().length - 1);
       event.preventDefault();
       break;
     case 'o':
@@ -286,17 +426,28 @@ document.addEventListener('touchend', (event) => {
 
 window.addEventListener('popstate', () => {
   const key = window.location.hash.slice(1);
+  const slide = allSlides.find((item) => item.dataset.key === key);
+  if (slide && slide.dataset.track !== 'shared' && slide.dataset.track !== track) {
+    track = slide.dataset.track;
+    saveTrack();
+  }
   const target = indexOfKey(key);
   index = target === -1 ? 0 : target;
-  render({ push: false });
+  render({ push: false, rebuild: true });
 });
 
 function startFromHash() {
   const key = window.location.hash.slice(1);
-  const target = indexOfKey(key);
-  index = target === -1 ? 0 : target;
-  render({ push: false });
-  if (target === -1) history.replaceState({ index }, '', `#${keyForIndex(0)}`);
+  const slide = allSlides.find((item) => item.dataset.key === key);
+  if (slide && slide.dataset.track !== 'shared') {
+    track = slide.dataset.track;
+    saveTrack();
+  }
+  index = Math.max(0, sequence().findIndex((item) => item.dataset.key === key));
+  render({ push: false, rebuild: true });
+  if (window.location.hash !== `#${currentSlide().dataset.key}`) {
+    history.replaceState({ index }, '', `#${currentSlide().dataset.key}`);
+  }
 }
 
 startFromHash();
